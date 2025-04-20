@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+
+{% block weather %}
+<style>
+#userInpt{padding-left: 10px; font-weight: bold;}
+.boxes{display: flex; padding: 1em; margin: 1em; flex-flow: row wrap; justify-content: center;}
+#box{background: rgba(0,0,0,0.75); color:white; max-width: 98vw; border: 5px solid white; padding: 10px; height:fit-content; margin: 1em; box-shadow: 5px 10px darkblue; }
+#Day_info{padding: 10px;}
+#Day, #Info{padding: 10px; margin:auto; height:fit-content;}
+#Info{text-align: center; max-width:4em; min-width:2em; font-size: medium;}
+#Emoji{font-size: 3em;}
+#Day_Information{display:flex; margin:auto;}
+</style>
+<br><br>
+<div id="app" class="boxes">
+{% for Location_Info in Location_Infos %}
+<div id="box">
+    <br>
+    <div id="userInpt">
+        <div id="Location">{{Location_Info.Location}},</div> 
+        <div id="Time details">{{Date}} for {{Length_Of_Stay}} days.</div>
+        <br>
+    </div>
+    <div id="Day_info">
+        {% for day in Location_Info.Info %}
+        <div id="Day"> {{day.timeDate}}
+            <div id="Day_Information">
+          {% for eachDay in day.listOfInfo %}
+          <br>
+              <div id="Info">
+                {{eachDay.weatherTime}}
+                {% if eachDay.rainVolume %}
+                    <div id="Emoji" title="{{eachDay.weatherDetail}} &#010 {{eachDay.rainVolume}} mm in last 3 hours &#010 Feels like: {{eachDay.feelsLike}}">{{eachDay.weatherType}}</div>
+                <div id="wind_speed"> {{eachDay.windSpeed}} kph </div>
+                {% else %}
+                    <div id="Emoji" title="{{eachDay.weatherDetail}} &#010 Feels like: {{eachDay.feelsLike}} ">{{eachDay.weatherType}}</div>
+                    <div id="wind_speed"> {{eachDay.windSpeed}} <br> kph </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>   
+{% endfor %}
+</div>
+{% endblock %}

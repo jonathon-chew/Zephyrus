@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyrus</title>
+    <style>
+        body {
+            background-image: url("https://cdn.wallpapersafari.com/51/42/SlCucj.jpg");
+        }
+
+        #LocationInput {
+            left: 33vw;
+            width: 33vw;
+            height: 5vh;
+            border-radius: 10px;
+        }
+
+        #DateInput {
+            position: relative;
+            height: 5vh;
+        }
+
+        #Length_Of_StayInput {
+            position: relative;
+            padding-left: 5 vw;
+            height: 5vh;
+        }
+
+        #submitBtn {
+            position: relative;
+            padding-left: 5 vw;
+            height: 5vh;
+        }
+
+        #resetBtn {
+            position: relative;
+            padding-left: 5 vw;
+            height: 5vh;
+        }
+
+        #form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" id="form">
+        <input type="text" autocomplete="off" autofocus placeholder="Location" id="LocationInput" name="Location"
+            list="cityList">
+        <datalist id="cityList">
+            {% for city in Cities %}
+            <option value="{{city}}">
+                {% endfor %}
+        </datalist>
+        <select name="Date" id="DateInput">
+            <option disabled selected>When Do You Start</option>
+            {% for date in DATES %}
+            <option value="{{date}}">{{date}}</option>
+            {% endfor %}
+        </select>
+        <select name="Length_Of_Stay" id="Length_Of_StayInput">
+            <option disabled selected>How many days will you be there</option>
+            {% for number in NUMBER_OF_DAYS %}
+            <option value="{{number}}">{{number}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" id="submitBtn">Search/Add</button>
+        <button type="reset" id="resetBtn">Clear</button>
+    </form>
+    {% block weather %}{% endblock %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const emojiElements = document.querySelectorAll("#Emoji");
+            const windElements = document.querySelectorAll("#wind_speed")
+
+            windElements.forEach(windElement => {
+                let currentInnerHTML = windElement.innerHTML
+                windElement.innerHTML = "&#127788 " + currentInnerHTML
+            });
+
+            emojiElements.forEach(emojiElement => {
+                console.log(emojiElement.title)
+                if (emojiElement.textContent.includes("Rain")) {
+                    emojiElement.innerHTML = emojiElement.innerHTML.replace(/Rain/g, "&#9748");
+                }
+                if (emojiElement.textContent.includes("Clear")) {
+                    emojiElement.innerHTML = emojiElement.innerHTML.replace(/Clear/g, "&#9728");
+                    emojiElement.style.color = "transparent"
+                    emojiElement.style.textShadow = "0px 0px 0px yellow"
+                }
+                if (emojiElement.textContent.includes("Clouds")) {
+                    emojiElement.innerHTML = emojiElement.innerHTML.replace(/Clouds/g, "&#9925");
+                }
+            });
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function (event) {
+            event.preventDefault();  // Prevent the form from resetting immediately
+
+            allBoxes = document.querySelectorAll('#box')
+
+            allBoxes.forEach(box =>{
+                box.remove()
+            })
+
+            fetch('/clear_places', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log(data.message);  // Handle success
+                        // Optionally, you can update the UI to reflect the changes
+                    } else {
+                        console.error('Failed to clear places');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+    </script>
+</body>
+
+</html>
