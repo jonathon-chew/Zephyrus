@@ -112,7 +112,7 @@ PLACES=[]
 def homepage():
     userPlaceChoice = request.args.get("Location", "London")
 
-    if userPlaceChoice not in PLACES and userPlaceChoice in ITINARY.keys():
+    if userPlaceChoice not in PLACES:
         print(f"\nUser Choice: |{userPlaceChoice}|") # This is to show the choice for debugging!
         PLACES.append(userPlaceChoice)
 
@@ -162,7 +162,7 @@ def homepage():
 @app.route('/clear_places', methods=['POST'])
 def clear_places():
     global PLACES
-    PLACES=[]
+    PLACES=['British Museum']
     print("Empty places", PLACES)
     return jsonify({"status": "success", "message": "PLACES array has been cleared"}), 200
 

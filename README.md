@@ -1,13 +1,51 @@
-# weather
+# 📸 Zephyrus (Python)
 
-An app that will make an API call to open weather
+A simple web app using python and APIs to find the weather at given locations. 100 British locations pre-programmed in but google map URLs work just as well 
 
-It will cycle through all the places that you are going.
+## 🚀 Features
 
-Only show the responses for the places that you're going for the times that you are going to be there.
+- Fetches the weather metadata using the OpenWeather API
+- Downloads the json and stores it, if it hasn't had a recent download 
+- Serves the result to a HTML page where a user can specify all sorts of paraemters
+- Simple and clean HTML based front end 
 
-At the minute the locations and times will be hard coded in - but loop through everything.
+## 🛠️ Prerequisites
 
-Stretch Goal One - TUI for allowing adding of locations and times
+- [Python] Listed in requirements.txt
+- [Python] Including script to parse the Google Maps URL
+- A NASA API key (get one for free at [api.nasa.gov](https://api.nasa.gov/))
 
-Stretch Goal Two - Read a CSV/Excel File in a cerain way to get locations/times and insert the data in
+## 📁 Setup
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/jonathon-chew/Zephyrus.git
+   cd Zephyrus
+   ```
+
+2. Store your OpenWeather API key in the text file located at: ./key.txt
+
+3. Run the script:
+
+    `./app.py`
+
+    OR
+
+    `python3 app.py`
+
+## 📂 Output
+
+The inofrmation from the returned JSON file is parsed and converted into emojis and the relevent information desired.
+
+The script saves basic metadata like latitude, longitude, and URL to the json files in the cache folder.
+
+## 🧠 Notes
+
+This is currently a work in progress with a few inovations planned for the future.
+
+Issues will be tracked in Github issues.
+
+## 📜 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
