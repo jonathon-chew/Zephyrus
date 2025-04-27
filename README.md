@@ -1,4 +1,4 @@
-# 📸 Zephyrus (Python)
+# 🌪 Zephyrus (Python)
 
 A simple web app using python and APIs to find the weather at given locations. 100 British locations pre-programmed in but google map URLs work just as well 
 
