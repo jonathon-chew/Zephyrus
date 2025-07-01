@@ -2,3 +2,5 @@ key.txt
 Archive/*
 caches/*
 __pycache__
+nohup.out
+homeserver/*
