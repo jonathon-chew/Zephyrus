@@ -1,4 +1,3 @@
-#!/Users/hunteradder626/Documents/Python_Environments/Home_Server_Flask/bin/python3
 
 import os
 import time
@@ -292,5 +291,6 @@ def getNewLocation(coOrdinates, filePath, key=getKey()):
 
 if __name__ == '__main__':
     # Replace '192.168.x.x' with your actual IP address
-    app.run(host='192.168.1.157', port=8000, debug=True)
+    # app.run(host='192.168.1.157', port=8000, debug=True)
+    app.run(host='192.168.1.70', port=8000, debug=True)
     # app.run(host='192.168.0.223', port=5000, debug=True)
