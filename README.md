@@ -1,19 +1,19 @@
 # 🌪 Zephyrus (Python)
 
-A simple web app using python and APIs to find the weather at given locations. 100 British locations pre-programmed in but google map URLs work just as well 
+A simple web app using Python and APIs to find the weather for given locations. It includes a set of pre-programmed British locations, and Google Maps URLs work as well.
 
 ## 🚀 Features
 
 - Fetches the weather metadata using the OpenWeather API
-- Downloads the json and stores it, if it hasn't had a recent download 
-- Serves the result to a HTML page where a user can specify all sorts of paraemters
-- Simple and clean HTML based front end 
+- Downloads JSON and stores it if it has not had a recent refresh
+- Serves the result to an HTML page where a user can specify parameters
+- Simple HTML-based front end
 
 ## 🛠️ Prerequisites
 
-- [Python] Listed in requirements.txt
-- [Python] Including script to parse the Google Maps URL
-- A NASA API key (get one for free at [api.nasa.gov](https://api.nasa.gov/))
+- [Python] Listed in `requirements.txt`
+- OpenWeather API access
+- A local API key stored outside the repository
 
 ## 📁 Setup
 
@@ -24,7 +24,7 @@ A simple web app using python and APIs to find the weather at given locations. 1
    cd Zephyrus
    ```
 
-2. Store your OpenWeather API key in the text file located at: ./key.txt
+2. Store your OpenWeather API key in a local, untracked file or environment variable before running the app.
 
 3. Run the script:
 
@@ -36,15 +36,15 @@ A simple web app using python and APIs to find the weather at given locations. 1
 
 ## 📂 Output
 
-The inofrmation from the returned JSON file is parsed and converted into emojis and the relevent information desired.
+The information from the returned JSON file is parsed and converted into emojis, along with the relevant weather details.
 
-The script saves basic metadata like latitude, longitude, and URL to the json files in the cache folder.
+The script saves basic metadata like latitude, longitude, and URL to JSON files in the cache folder.
 
 ## 🧠 Notes
 
-This is currently a work in progress with a few inovations planned for the future.
+This is currently a work in progress with a few improvements planned for the future.
 
-Issues will be tracked in Github issues.
+Issues will be tracked in GitHub Issues.
 
 ## 📜 License
 
